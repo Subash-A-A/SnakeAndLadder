@@ -8,22 +8,21 @@ public class CPUController : MonoBehaviour
     private float zpos = 0f;
     public static bool CPUturn = false;
 
+    [SerializeField] DiceManager dm;
+
     private void Update()
     {
         Move();
         PosLerper();
     }
 
-    int RollDice()
-    {
-        return Random.Range(1, 7);
-    }
-
     void Move()
     {
         if (CPUturn && !BoardScoreManager.gameOver)
         {
-            int rand = RollDice();
+            int rand = dm.RollDice();
+            dm.SetDiceValue(rand + "");
+
             Debug.Log(rand);
 
             int temp = score + rand;

@@ -5,7 +5,16 @@ public class BoardScoreManager : MonoBehaviour
 {
     private int PlayerScore;
     private int CPUScore;
-    public static bool gameOver = false;
+    public static bool gameOver;
+    public static bool playerWon;
+    public static bool cpuWon;
+
+    private void Start()
+    {
+        gameOver = false;
+        playerWon = false;
+        cpuWon = false;
+    }
 
     private void Update()
     {
@@ -20,10 +29,12 @@ public class BoardScoreManager : MonoBehaviour
         {
             if (PlayerScore == 100)
             {
+                playerWon = true;
                 Debug.Log("Player Won!");
             }
             else
             {
+                cpuWon = true;
                 Debug.Log("CPU Won!");
             }
         }

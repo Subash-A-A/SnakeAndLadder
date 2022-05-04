@@ -7,7 +7,8 @@ public class PlayerController : MonoBehaviour
     public static int score = 0;
     private float xpos = 0f;
     private float zpos = 0f;
-    private bool PlayerTurn = true;
+    public static bool PlayerTurn = true;
+    [SerializeField] DiceManager dm;
 
     private void Update()
     {
@@ -15,16 +16,13 @@ public class PlayerController : MonoBehaviour
         PosLerper();
     }
 
-    int RollDice()
-    {
-        return Random.Range(1, 7);
-    }
-
     void Move()
     {
         if (Input.GetKeyDown(KeyCode.Space) && PlayerTurn && !BoardScoreManager.gameOver)
         {
-            int rand = RollDice();
+            int rand = dm.RollDice();
+            dm.SetDiceValue(rand + "");
+
             Debug.Log(rand);
 
             int temp = score + rand;
@@ -48,7 +46,6 @@ public class PlayerController : MonoBehaviour
                     }
                     score += 1;
                 }
-                PlayerTurn = false;
             }
             StartCoroutine(TurnChange());
         }
@@ -63,6 +60,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator TurnChange()
     {
         PlayerTurn = false;
+        yield return new WaitForSeconds(1f);
+        dm.SetDiceValue("Rolling...");
         yield return new WaitForSeconds(1f);
         CPUController.CPUturn = true;
         yield return new WaitForSeconds(1f);
