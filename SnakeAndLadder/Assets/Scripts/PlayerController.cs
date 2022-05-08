@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private float zpos = 0f;
     public static bool PlayerTurn = true;
     [SerializeField] DiceManager dm;
+    [SerializeField] UIManager um;
 
     private void Update()
     {
@@ -61,10 +62,13 @@ public class PlayerController : MonoBehaviour
     {
         PlayerTurn = false;
         yield return new WaitForSeconds(1f);
+        um.SetTurnText("CPU Turn");
         dm.SetDiceValue("Rolling...");
         yield return new WaitForSeconds(1f);
         CPUController.CPUturn = true;
         yield return new WaitForSeconds(1f);
+        um.SetTurnText("Player Turn");
+        dm.SetDiceValue("Rolling...");
         PlayerTurn = true;
     }
 }

@@ -9,11 +9,14 @@ public class BoardScoreManager : MonoBehaviour
     public static bool playerWon;
     public static bool cpuWon;
 
+    private DiceManager dm;
+
     private void Start()
     {
         gameOver = false;
         playerWon = false;
         cpuWon = false;
+        dm = FindObjectOfType<DiceManager>();
     }
 
     private void Update()

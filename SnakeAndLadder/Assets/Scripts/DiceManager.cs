@@ -12,6 +12,13 @@ public class DiceManager : MonoBehaviour
 
     public void SetDiceValue(string val)
     {
-        diceStatus.text = val;
+        if (!BoardScoreManager.gameOver)
+        {
+            diceStatus.text = val;
+        }
+        else
+        {
+            diceStatus.text = "...";
+        }
     }
 }
