@@ -1091,26 +1091,41 @@ MonoBehaviour:
   SnakeBlock: {fileID: 8718265207547735589, guid: 3b0421b06825c0948872d033034fba11, type: 3}
   LadderBlock: {fileID: 5136665216911917732, guid: 78c96cac9a3f5a44ebac76adfea168a3, type: 3}
   trapList:
+  - head: 37
+    tail: 3
+    isSnake: 1
+  - head: 47
+    tail: 16
+    isSnake: 1
   - head: 28
-    tail: 6
+    tail: 10
     isSnake: 1
-  - head: 29
-    tail: 7
-    isSnake: 1
-  - head: 55
-    tail: 30
-    isSnake: 0
-  - head: 31
-    tail: 9
-    isSnake: 1
-  - head: 77
+  - head: 75
     tail: 32
+    isSnake: 1
+  - head: 96
+    tail: 42
+    isSnake: 1
+  - head: 94
+    tail: 71
+    isSnake: 1
+  - head: 58
+    tail: 22
     isSnake: 0
-  - head: 57
-    tail: 33
+  - head: 79
+    tail: 41
     isSnake: 0
-  - head: 44
-    tail: 34
+  - head: 56
+    tail: 4
+    isSnake: 0
+  - head: 50
+    tail: 12
+    isSnake: 0
+  - head: 88
+    tail: 54
+    isSnake: 0
+  - head: 55
+    tail: 14
     isSnake: 0
 --- !u!4 &1784719033
 Transform:
