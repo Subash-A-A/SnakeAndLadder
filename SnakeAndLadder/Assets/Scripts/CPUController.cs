@@ -48,7 +48,7 @@ public class CPUController : MonoBehaviour
                 }
             }
             CPUturn = false;
-            StartCoroutine(CPUOnSnake());
+            StartCoroutine(CPUOnSnakeLadder());
         }
     }
     void MoveToTailHead(int pos)
@@ -81,13 +81,13 @@ public class CPUController : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, pos, 10 * Time.deltaTime);
     }
 
-    IEnumerator CPUOnSnake()
+    IEnumerator CPUOnSnakeLadder()
     {
         yield return new WaitForSeconds(1f);
-        int tailPos = TrapCollision.CheckSnake(false);
-        if (tailPos != -1)
+        int head_tailPos = TrapCollision.CheckSnakeLadder(false);
+        if (head_tailPos != -1)
         {
-            MoveToTailHead(tailPos - 1);
+            MoveToTailHead(head_tailPos - 1);
         }
     }
 }

@@ -9,7 +9,7 @@ public class TrapCollision : MonoBehaviour
         tm = FindObjectOfType<TrapManager>();
     }
 
-    public static int CheckSnake(bool isPlayer)
+    public static int CheckSnakeLadder(bool isPlayer)
     {
         foreach (Trap t in tm.trapList)
         {
@@ -22,6 +22,17 @@ public class TrapCollision : MonoBehaviour
                 if (CPUTilePosition() == t.head && !isPlayer)
                 {
                     return t.tail;
+                }
+            }
+            else
+            {
+                if (PlayerTilePosition() == t.tail && isPlayer)
+                {
+                    return t.head;
+                }
+                if (CPUTilePosition() == t.tail && !isPlayer)
+                {
+                    return t.head;
                 }
             }
         }

@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator TurnChange()
     {
         PlayerTurn = false;
-        StartCoroutine(PlayerOnSnake());
+        StartCoroutine(PlayerOnSnakeLadder());
 
         yield return new WaitForSeconds(1f);
 
@@ -104,13 +104,13 @@ public class PlayerController : MonoBehaviour
         PlayerTurn = true;
     }
 
-    IEnumerator PlayerOnSnake()
+    IEnumerator PlayerOnSnakeLadder()
     {
         yield return new WaitForSeconds(1f);
-        int tailPos = TrapCollision.CheckSnake(true);
-        if (tailPos != -1)
+        int head_tailPos = TrapCollision.CheckSnakeLadder(true);
+        if (head_tailPos != -1)
         {
-            MoveToTailHead(tailPos - 1);
+            MoveToTailHead(head_tailPos - 1);
         }
     }
 }
