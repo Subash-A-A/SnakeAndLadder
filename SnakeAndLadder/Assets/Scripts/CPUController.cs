@@ -1,8 +1,8 @@
 using UnityEngine;
+using System.Collections;
 
 public class CPUController : MonoBehaviour
 {
-    private int currentPos = 0;
     public static int score = 0;
     private float xpos = 0f;
     private float zpos = 0f;
@@ -38,22 +38,56 @@ public class CPUController : MonoBehaviour
                     }
                     else if (n % 2 == 0)
                     {
-                        currentPos += 1;
+                        xpos += 1;
                     }
                     else if (n % 2 != 0)
                     {
-                        currentPos -= 1;
+                        xpos -= 1;
                     }
                     score += 1;
                 }
             }
             CPUturn = false;
+            StartCoroutine(CPUOnSnake());
+        }
+    }
+    void MoveToTailHead(int pos)
+    {
+        xpos = 0;
+        zpos = 0;
+        score = 0;
+        for (int i = 0; i < pos; i++)
+        {
+            int n = score / 10;
+            if ((score + 1) % 10 == 0)
+            {
+                zpos += 1;
+            }
+            else if (n % 2 == 0)
+            {
+                xpos += 1;
+            }
+            else if (n % 2 != 0)
+            {
+                xpos -= 1;
+            }
+            score += 1;
         }
     }
 
     void PosLerper()
     {
-        Vector3 pos = new Vector3(xpos + currentPos, 0.25f, zpos);
+        Vector3 pos = new Vector3(xpos, 0.25f, zpos);
         transform.position = Vector3.Lerp(transform.position, pos, 10 * Time.deltaTime);
+    }
+
+    IEnumerator CPUOnSnake()
+    {
+        yield return new WaitForSeconds(1f);
+        int tailPos = TrapCollision.CheckSnake(false);
+        if (tailPos != -1)
+        {
+            MoveToTailHead(tailPos - 1);
+        }
     }
 }
