@@ -6,6 +6,9 @@ public class TrapManager : MonoBehaviour
     [SerializeField] Transform Traps;
     [SerializeField] GameObject SnakeBlock;
     [SerializeField] GameObject LadderBlock;
+    [SerializeField] Color Red;
+    [SerializeField] Color Green;
+    [SerializeField] Material lineMat;
 
     [Header("Trap/Ladder Locations")]
     public Trap[] trapList;
@@ -22,9 +25,20 @@ public class TrapManager : MonoBehaviour
             Vector3 headPos = MoveBlocks(t.head);
             Vector3 tailPos = MoveBlocks(t.tail);
             GameObject block = (t.isSnake) ? SnakeBlock : LadderBlock;
+            Color lineColor = (t.isSnake) ? Red : Green;
 
             GameObject head = Instantiate(block, Traps.position, Quaternion.identity);
             GameObject tail = Instantiate(block, Traps.position, Quaternion.identity);
+
+            LineRenderer line = head.AddComponent<LineRenderer>();
+            line.enabled = true;
+            line.startWidth = 0.2f;
+            line.endWidth = 0.2f;
+            line.startColor = lineColor;
+            line.endColor = lineColor;
+            line.material = lineMat;
+            line.SetPosition(0, headPos);
+            line.SetPosition(1, tailPos);
 
             head.transform.position = headPos;
             tail.transform.position = tailPos;
@@ -56,4 +70,5 @@ public class TrapManager : MonoBehaviour
         Vector3 blockPos = new Vector3(xpos, 0f, zpos);
         return blockPos;
     }
+
 }
