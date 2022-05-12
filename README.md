@@ -1,2 +1,2 @@
 # SnakeAndLadder
- SnakeAndLadder (single player)
+ Modern Snake and Ladder with Portals! (No more boring snakes !)
