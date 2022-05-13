@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
     void PosLerper()
     {
         Vector3 pos = new Vector3(xpos, 0.25f, zpos);
-        transform.position = Vector3.Lerp(transform.position, pos, 10 * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, pos, 5 * Time.deltaTime);
     }
 
     IEnumerator TurnChange()
